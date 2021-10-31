@@ -1,0 +1,556 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "A simple RESTful API for students and courses",
+        "version": "1.0.0",
+        "title": "Students and Courses"
+    },
+    "host": "rest-example.apps.cac.preview.pcf.manulife.com",
+    "basePath": "/v1",
+    "tags": [
+        {
+            "name": "course",
+            "description": "Everything about a course"
+        },
+        {
+            "name": "student",
+            "description": "Everything about a student"
+        },
+        {
+            "name": "term",
+            "description": "Everything about a term"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/course/{id}": {
+            "get": {
+                "tags": [
+                    "course"
+                ],
+                "summary": "Get a course by Id",
+                "description": "",
+                "operationId": "getCourse",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The course with the given ID",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Course"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/courses": {
+            "get": {
+                "tags": [
+                    "course"
+                ],
+                "summary": "Get all courses",
+                "description": "",
+                "operationId": "getCourses",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of courses",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Courses"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/course": {
+            "post": {
+                "tags": [
+                    "course"
+                ],
+                "summary": "Add a new course",
+                "description": "",
+                "operationId": "addCourse",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Course"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The course that was inserted",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Course"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/student/{id}": {
+            "get": {
+                "tags": [
+                    "student"
+                ],
+                "summary": "Get a student by Id",
+                "operationId": "getStudent",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the student to retrieve",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The student with the given ID",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Student"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/students": {
+            "get": {
+                "tags": [
+                    "student"
+                ],
+                "summary": "Get all students",
+                "description": "",
+                "operationId": "getStudents",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of students",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Students"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/student": {
+            "post": {
+                "tags": [
+                    "student"
+                ],
+                "summary": "Add a new student",
+                "description": "",
+                "operationId": "addStudent",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Student"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The student that was inserted",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Student"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/term/{id}": {
+            "get": {
+                "tags": [
+                    "term"
+                ],
+                "summary": "Get a term by Id",
+                "description": "",
+                "operationId": "getTerm",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The term with the given ID",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Term"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/term/course/{id}": {
+            "get": {
+                "tags": [
+                    "term"
+                ],
+                "summary": "Get term(s) by course Id",
+                "description": "",
+                "operationId": "getCourseTerms",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The term(s) with the given course ID",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Terms"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/term/student/{id}": {
+            "get": {
+                "tags": [
+                    "term"
+                ],
+                "summary": "Get term(s) by student Id",
+                "description": "",
+                "operationId": "getStudentTerms",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The term(s) with the given student ID",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Terms"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/term": {
+            "post": {
+                "tags": [
+                    "term"
+                ],
+                "summary": "Add a new term",
+                "description": "",
+                "operationId": "addTerm",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Term"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The term that was inserted",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Term"
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Course": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Courses": {
+            "type": "array",
+            "items": {
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/Course"
+                    },
+                    {
+                        "type": "object"
+                    }
+                ]
+            }
+        },
+        "Student": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Students": {
+            "type": "array",
+            "items": {
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/Student"
+                    },
+                    {
+                        "type": "object"
+                    }
+                ]
+            }
+        },
+        "Term": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "course_id": {
+                    "type": "integer"
+                },
+                "student_id": {
+                    "type": "integer"
+                },
+                "completed": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Terms": {
+            "type": "array",
+            "items": {
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/Term"
+                    },
+                    {
+                        "type": "object"
+                    }
+                ]
+            }
+        },
+        "ApiResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 400
+                },
+                "type": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
